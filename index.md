@@ -12,6 +12,7 @@ Anatoly Yakovenko
 [Abstract](#abstract)
 1. [Introduction](#introduction)
 2. [Outline](#outline)
+3. [Network Design](#network-design)
 
 ## Abstract
 
@@ -26,4 +27,8 @@ Current publicly available blockchains do not rely on time, or make a weak assum
 ## 2. Outline
 
 Description about how this paper is organized...
+
+## 3. Network Design
+
+As shown in **Figure 1**, at any given time a system node is designated as Leader to generate a Proof of History sequence, providing the network global read consistency and a verifiable passage of time. The Leader sequences user messages and orders them such that they can be efficiently processed by other nodes in the system, **maximizing throughput**. It executes the transactions on the current state that is stored in RAM and publishes the transactions and a signature of the final state to the replications nodes called **Verifiers**. Verifiers execute the same transactions on their copies of the state, and publish their computed signatures of the state as confirmations. The published confirmations serve as votes for the consensus algorithm.
 
