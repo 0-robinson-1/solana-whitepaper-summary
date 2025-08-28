@@ -59,3 +59,13 @@ For example:
 
 (Where hashN represents the actual hash output. It is only necessary to publish a subset of the hashes and indices **at an interval**.)
 
+For example:
+
+#### PoH Sequence
+
+| Index | Operation                              | Output Hash |
+|-------|----------------------------------------|-------------|
+| 1     | sha256("any random starting value")    | hash1       |
+| 200   | sha256(hash199)                        | hash200     |
+| 300   | sha256(hash299)                        | hash300     |
+
