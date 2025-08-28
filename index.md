@@ -15,6 +15,7 @@ Anatoly Yakovenko
 3. [Network Design](#network-design)
 4. [Proof of History](#proof-of-history)
   4.1 [Description](#description)
+  4.2 [Timestamp for Events](#timestamp-for-events)
 
 ## Abstract
 
@@ -65,5 +66,7 @@ For example:
 | 200   | sha256(hash199)                        | hash200     |
 | 300   | sha256(hash299)                        | hash300     |
 
-As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure ** that real time has passed between index 0 and index 300**.  
+As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure **that real time has passed between index 0 and index 300**.  
+
+  ##4.2 Timestamp for Events  
 
