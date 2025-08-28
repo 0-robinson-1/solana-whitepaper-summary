@@ -34,3 +34,5 @@ As shown in **Figure 1**, at any given time a system node is designated as Leade
 
 ![Solana Transactions](images/solana-network-design.png)
 
+In a non-partitioned state, at any given time, there is one Leader in the network. Each Verifier node has the same hardware capabilities as a Leader and can be elected as a Leader, this is done through PoS based elections.
+
