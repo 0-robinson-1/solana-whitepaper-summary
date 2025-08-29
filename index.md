@@ -70,3 +70,5 @@ As long as the hash function chosen is collision resistant, this set of hashes c
 
   ##4.2 Timestamp for Events  
 
+
+![Solana Time has passed](images/solana-time-passed.png)
