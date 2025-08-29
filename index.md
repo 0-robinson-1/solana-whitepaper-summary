@@ -75,3 +75,18 @@ trust that real time passed between count **510144806912** and count **510146904
 
 ![Solana Time has passed](images/solana-time-passed.png)
 
+This sequence of hashes can also be used to record that some piece of data was created before a particular hash index was generated. Using a 'combine' function to combine the piece of data with the current hash at the current index. The data can simlpy be a cryptographically unique hash of arbitrary event data.  
+The combine function can be a simple append of data, or any operation that is collision resistant. The next generated hash represents a timestamp of the data, because it could have only been generated after that specific piece of data was inserted.
+
+Some external event occurs, like a photograph was taken, or any arbitrary digital data was created:
+
+#### PoH Sequence With Data
+| Index | Operation                                 | Output Hash |
+|-------|-------------------------------------------|-------------|
+| 1     | sha256("any random starting value")       | hash1       |
+| 200   | sha256(hash199)                           | hash200     |
+| 300   | sha256(hash299)                           | hash300     |
+| 336   | sha256(append(hash335, photgraph_sha256)) | hash336     |
+
+Hash336 is computed from the appended binary data of hash335 and the sha256 of the photograph. The index and the sha256 of the photograph are recorded as part of the sequence output. So anyone verifying this sequence can then recreate this change to the sequence.
+
