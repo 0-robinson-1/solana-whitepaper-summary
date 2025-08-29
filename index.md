@@ -16,6 +16,7 @@ Anatoly Yakovenko
 4. [Proof of History](#proof-of-history)
   4.1 [Description](#description)
   4.2 [Timestamp for Events](#timestamp-for-events)
+  4.3 [Verification](#verification)
 
 ## Abstract
 
@@ -108,3 +109,7 @@ The data that is mixed into the sequence can be the raw data itself, or just a h
 ![Inserting Data into PoH](/images/solana-inserting-data.png)
 
 In the example in Figure 3, input cfd40df8… was inserted into the Proof of History sequence. The count at which it was inserted is 510145855488 and the state at which it was inserted is 3d039eef3. All the future generated hashes are modified by this change to the sequence, this change is indicated by the color change in the figure. **Every node observing this sequence can determine the order at which all events have been inserted and estimate the real time between the insertions**.
+
+  ## 4.3 Verification
+
+The sequence can be verified correct by a multicore computer in significantly less time than it took to generate it.
