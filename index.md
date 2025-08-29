@@ -81,12 +81,28 @@ The combine function can be a simple append of data, or any operation that is co
 Some external event occurs, like a photograph was taken, or any arbitrary digital data was created:
 
 #### PoH Sequence With Data
-| Index | Operation                                 | Output Hash |
-|-------|-------------------------------------------|-------------|
-| 1     | sha256("any random starting value")       | hash1       |
-| 200   | sha256(hash199)                           | hash200     |
-| 300   | sha256(hash299)                           | hash300     |
-| 336   | sha256(append(hash335, photgraph_sha256)) | hash336     |
+| Index | Operation                                  | Output Hash |
+|-------|--------------------------------------------|-------------|
+| 1     | sha256("any random starting value")        | hash1       |
+| 200   | sha256(hash199)                            | hash200     |
+| 300   | sha256(hash299)                            | hash300     |
+| 336   | sha256(append(hash335, photograph_sha256)) | hash336     |
 
 Hash336 is computed from the appended binary data of hash335 and the sha256 of the photograph. The index and the sha256 of the photograph are recorded as part of the sequence output. So anyone verifying this sequence can then recreate this change to the sequence.
 
+#### PoH Sequence With 2 Events
+| Index | Operation                                   | Output Hash |
+|-------|---------------------------------------------|-------------|
+| 1     | sha256("any random starting value")         | hash1       |
+| 200   | sha256(hash199)                             | hash200     |
+| 300   | sha256(hash299)                             | hash300     |
+| 336   | sha256(append(hash335, photograph1_sha256)) | hash336     |
+| 400   | sha256(hash399)                             | hash400     |
+| 500   | sha256(hash499)                             | hash500     |
+| 600   | sha256(append(hash599, photograph2_sha256)) | hash600     |
+| 700   | sha256(hash699)                             | hash700     |
+
+Because the initial process is still sequential, we can then tell that things entered into the sequence must have occurred sometime before the future hashed value was computed. Photograph2 was created before hash600 and photograph1 was created before hash336. Inserting the data into the sequence of hashes results in a change to all subsequent values in the sequence. As long as the hash function used is collision resistant, and the data was appended, it should be computationally impossible to pre-compute any future sequences based on prior knowledge of what data will be integrated into the sequence.  
+The data that is mixed into the sequence can be the raw data itself, or just a hash of the data with accompanying metadata. 
+
+![Inserting Data into PoH](/images/solana-inserting-data.png)
