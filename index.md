@@ -68,7 +68,7 @@ For example:
 
 As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure **that real time has passed between index 0 and index 300**.  
 
-  ##4.2 Timestamp for Events  
+  ## 4.2 Timestamp for Events  
 
 In the example in Figure 2, hash 62f51643c1 was produced on count 510144806912 and hash c43d862d88 was produced on count 510146904064. This proves that we can
 trust that real time passed between count **510144806912** and count **510146904064**.  
@@ -106,3 +106,5 @@ Because the initial process is still sequential, we can then tell that things en
 The data that is mixed into the sequence can be the raw data itself, or just a hash of the data with accompanying metadata. 
 
 ![Inserting Data into PoH](/images/solana-inserting-data.png)
+
+In the example in Figure 3, input cfd40df8… was inserted into the Proof of History sequence. The count at which it was inserted is 510145855488 and the state at which it was inserted is 3d039eef3. All the future generated hashes are modified by this change to the sequence, this change is indicated by the color change in the figure. **Every node observing this sequence can determine the order at which all events have been inserted and estimate the real time between the insertions**.
