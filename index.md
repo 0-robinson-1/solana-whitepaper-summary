@@ -70,5 +70,8 @@ As long as the hash function chosen is collision resistant, this set of hashes c
 
   ##4.2 Timestamp for Events  
 
+In the example in Figure 2, hash 62f51643c1 was produced on count 510144806912 and hash c43d862d88 was produced on count 510146904064. This proves that we can
+trust that real time passed between count **510144806912** and count **510146904064**.  
 
 ![Solana Time has passed](images/solana-time-passed.png)
+
