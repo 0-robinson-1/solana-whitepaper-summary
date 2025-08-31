@@ -116,13 +116,11 @@ The sequence can be verified correct by a multicore computer in significantly le
 
 For example:
 #### Core 1
----------------------------------------------------------------
 | Index | Data                                   | Output Hash |
 |-------|----------------------------------------|-------------|
 | 200   | sha256(hash199)                        | hash200     |
 | 300   | sha256(hash299)                        | hash300     |
 #### Core 2
----------------------------------------------------------------
 | Index | Data                                   | Output Hash |
 |-------|----------------------------------------|-------------|
 | 300   | sha256(hash299)                        | hash300     |
