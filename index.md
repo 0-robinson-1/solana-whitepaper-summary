@@ -114,5 +114,18 @@ In the example in Figure 3, input cfd40df8… was inserted into the Proof of His
 
 The sequence can be verified correct by a multicore computer in significantly less time than it took to generate it.
 
+For example:
+#### Core 1
+---------------------------------------------------------------
+| Index | Data                                   | Output Hash |
+|-------|----------------------------------------|-------------|
+| 200   | sha256(hash199)                        | hash200     |
+| 300   | sha256(hash299)                        | hash300     |
+#### Core 2
+---------------------------------------------------------------
+| Index | Data                                   | Output Hash |
+|-------|----------------------------------------|-------------|
+| 300   | sha256(hash299)                        | hash300     |
+| 400   | sha256(hash399)                        | hash400     |
 
 ![Verification using Multiple Cores](/images/solana-verification-using-multiple-cores.png)
