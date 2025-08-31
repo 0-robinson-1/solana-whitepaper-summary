@@ -113,3 +113,6 @@ In the example in Figure 3, input cfd40df8… was inserted into the Proof of His
   ## 4.3 Verification
 
 The sequence can be verified correct by a multicore computer in significantly less time than it took to generate it.
+
+
+![Verification using Multiple Cores](/images/solana-verification-using-multiple-cores.png)
