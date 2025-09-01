@@ -153,7 +153,7 @@ It's possible to synchronize multiple Proof of History generators by mixing the 
 
 </div>
 
-<div>
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 
 #### PoH Generator B
 
