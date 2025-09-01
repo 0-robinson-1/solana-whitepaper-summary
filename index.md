@@ -134,3 +134,21 @@ $$\frac{\text{Total number of hashes}}{\text{Hashes per second per core} \times 
 
 In the example in Figure 4, each core is able to verify each slice of the sequence in parallel. Since all input strings are recorded into the output, with the counter and state that they are appended to, the verifiers can replicate each slice in parallel. The red colored hashes indicate that the sequence was modified by a data insertion.
 
+  ## 4.4 Horizontal Scaling
+
+It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
+
+#### PoH Generator A
+| Index | Hash    | Output Hash |
+|-------|-----------------------|
+| 1     | hash1a  |             |
+| 2     | hash2a  | hash1b      |
+| 3     | hash3a  |             |
+| 4     | hash4a  |             |
+#### PoH Generator B
+| Index | Hash    | Output Hash |
+|-------|-----------------------|
+| 1     | hash1b  |             |
+| 2     | hash2b  | hash1a      |
+| 3     | hash3b  |             |
+| 4     | hash4b  |             |
