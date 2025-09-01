@@ -127,3 +127,10 @@ For example:
 | 400   | sha256(hash399)                        | hash400     |
 
 ![Verification using Multiple Cores](/images/solana-verification-using-multiple-cores.png)
+
+The expected time to verify that the sequence is correct is going to be:  
+
+$$\frac{\text{Total number of hashes}}{\text{Hashes per second per core} \times \text{Number of cores available to verify}}$$  
+
+In the example in Figure 4, each core is able to verify each slice of the sequence in parallel. Since all input strings are recorded into the output, with the counter and state that they are appended to, the verifiers can replicate each slice in parallel. The red colored hashes indicate that the sequence was modified by a data insertion.
+
