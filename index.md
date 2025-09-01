@@ -138,7 +138,7 @@ In the example in Figure 4, each core is able to verify each slice of the sequen
 
 It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
 
-<div style="display: flex; justify-content: space-around;">
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 
 <div>
 
