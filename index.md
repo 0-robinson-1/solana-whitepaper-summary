@@ -165,6 +165,8 @@ In Figure 5, the two generators **insert each other’s output state and record 
 
   ## 4.5 Consistency
 
-
+Users are expected to be able to enforce consistency of the generated sequence and make it resistant to attacks by inserting the last observed output of the sequence they consider valid into their input.
 
 ![Two Generators Synchronizing](/images/solana-two-generators-synchronizing.png) 
+
+#### PoH Sequence A
