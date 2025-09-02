@@ -14,9 +14,11 @@ Anatoly Yakovenko
 2. [Outline](#outline)
 3. [Network Design](#network-design)
 4. [Proof of History](#proof-of-history)
-  4.1 [Description](#description)
-  4.2 [Timestamp for Events](#timestamp-for-events)
-  4.3 [Verification](#verification)
+   4.1 [Description](#description)
+   4.2 [Timestamp for Events](#timestamp-for-events)
+   4.3 [Verification](#verification)
+   4.4 [Horizontal Scaling](#horizontal-scaling)
+   4.5 [Consistency](#consistensy)
 
 ## Abstract
 
@@ -160,5 +162,9 @@ Given generators A and B, A receives a data packet from B (hash1b), which contai
 By periodically synchronizing the generators, each generator can then handle a portion of external traffic, thus the overall system can handle a larger amount of events to track at **the cost of true time accuracy** due to network latencies between the generators. A global order can still be achieved by picking some deterministic function to order any events that are within the synchronization window, such as by the value of the hash itself.  
 In Figure 5, the two generators **insert each other’s output state and record the operation**. The color change indicates that data from the peer had modified the sequence. The generated hashes that are mixed into each stream are highlighted in bold. The synchronization is transitive. A <-> B <-> C There is a provable order of events between A and C through B. Scaling in this way comes at the cost of availability. 10 × 1 gbps connections with availability of 0.999 would have 0.99910 = 0.99 availability. (Availability is the probability that a system is operational and accessible. Here, each connection has an availability of 0.999 (99.9% uptime, meaning it’s down only 0.1% of the time)).  
 --> When you add more connections, the system’s overall availability is the product of the individual availabilities. For 10 connections, each with 0.999 availability, the combined availability is calculated as 0.999^10 ≈ 0.99 (or 99%). This means the system as a whole is slightly less reliable because the more components you add, the higher the chance that at least one fails... Scaling by adding more connections boosts throughput (more data can be processed), but it reduces overall system availability because the failure of any single connection can impact the system. The trade-off is between handling more traffic and maintaining high reliability, while adding more connections increases capacity, it slightly lowers the system’s overall reliability due to the multiplied probabilities of individual connection failures.
+
+  ## 4.5 Consistency
+
+
 
 ![Two Generators Synchronizing](/images/solana-two-generators-synchronizing.png) 
