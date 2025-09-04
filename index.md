@@ -183,3 +183,24 @@ Users are expected to be able to enforce consistency of the generated sequence a
 | 30    | Event2 |   hash30b   |
 | 40    | Event1 |   hash40b   |
 
+A malicious PoH generator could produce a second hidden sequence with the events in reverse order, if it has access to all the events at once, or is able to generate a faster hidden sequence.  
+To prevent this attack, each client-generated Event should contain within iself **the latest hash that the client observed from what it considers to be a valid sequence**. So when a client creates the "Event1" data, they should append the last hash they have observed.
+
+#### PoH Sequence A
+| Index |                 Data                  | Output Hash |
+|-------|---------------------------------------|-------------|
+| 10    |                                       |   hash10a   |
+| 20    | Event1 = append(event1 data, hash10a) |   hash20a   |
+| 30    | Event2 = append(event2 data, hash20a) |   hash30a   |
+| 40    | Event3 = append(event3 data, hash30a) |   hash40a   |
+
+When the sequence is published, Event3 would be referencing hash30a, and if it's not in the sequence prior to this Event, the consumers of the sequence know that it's an invalid sequence (Partial Reordering Attack). To prevent a malicious PoH generator from rewriting the client Event hashes, the client can submit a signature of the event data and the last observed hash instead of just the data...
+
+#### PoH Sequence A
+| Index |                             Data                               | Output Hash |
+|-------|----------------------------------------------------------------|-------------|
+| 10    |                                                                |   hash10a   |
+| 20    | Event1 = sign(append(event1 data, hash10a),Client Private Key) |   hash20a   |
+| 30    | Event2 = sign(append(event2 data, hash20a),Client Private Key) |   hash30a   |
+| 40    | Event3 = sign(append(event3 data, hash30a),Client Private Key) |   hash40a   |
+
