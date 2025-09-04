@@ -141,7 +141,6 @@ In the example in Figure 4, each core is able to verify each slice of the sequen
 It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
 
 #### PoH Generator A
-
 | Index | Hash   | Data   |
 |-------|--------|--------|
 | 1     | hash1a |        |
@@ -150,7 +149,6 @@ It's possible to synchronize multiple Proof of History generators by mixing the 
 | 4     | hash4a |        |
 
 #### PoH Generator B
-
 | Index | Hash   | Data   |
 |-------|--------|--------|
 | 1     | hash1b |        |
@@ -170,3 +168,18 @@ Users are expected to be able to enforce consistency of the generated sequence a
 ![Two Generators Synchronizing](/images/solana-two-generators-synchronizing.png) 
 
 #### PoH Sequence A
+| Index | Data   | Output Hash |
+|-------|--------|-------------|
+| 10    |        |   hash10a   |
+| 20    | Event1 |   hash20a   |
+| 30    | Event2 |   hash30a   |
+| 40    | Event3 |   hash40a   |
+
+#### PoH Hidden Sequence B
+| Index | Data   | Output Hash |
+|-------|--------|-------------|
+| 10    |        |   hash10b   |
+| 20    | Event3 |   hash20b   |
+| 30    | Event2 |   hash30b   |
+| 40    | Event1 |   hash40b   |
+
