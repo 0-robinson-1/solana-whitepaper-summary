@@ -22,6 +22,8 @@ Anatoly Yakovenko
    4.6 [Overhead](#overhead)
    4.7 [Attacks](#attacks)
       4.7.1 [Reversal](#reversal)
+      4.7.2 [Speed](#speed)
+      4.7.3 [Long Range Attacks](#long-range-attacks)
 
 ## Abstract
 
@@ -222,4 +224,15 @@ In Figure 6, the user-supplied input is dependent on hash **0xdeadbeef…** exis
 
   ## 4.7 Attacks
   ## 4.7.1 Reversal
+
+Generating a reverse order would require an attacker to start the malicious sequence after the second event. This delay should allow any non malicious peer to peer nodes to communicate about the original order.
+
+  ## 4.7.2 Speed
+
+Having multiple generators may make deployment more resistant to attacks. One generator could be high bandwidth and receive many events to mix into its sequence, another generator could be high speed low bandwidth that periodically mixes with the high bandwidth generator. --> The high speed sequence would create a secondary sequence of data that an attacker would have to reverse.
+
+  ## 4.7.3 Long Range Attacks
+
+Long range attacks involve acquiring old discarded client Private Keys, and generating a falsified ledger. Proof of History provides some protection against long range attacks. A malicious user that gains access to old private keys would have to recreate a historical record that takes as much time as the original one they are trying to forge. This would require access to a faster processor than the network is currently using, otherwise the attacker would never catch up in history length.  
+Additionally, a single source of time allows for construction of a simpler Proof of Replication. Since the network is designed so that all participants in the network will rely on a single historical record of events. **PoRep & PoH together should provide a defense of both space and time against a forged ledger.
 
