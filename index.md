@@ -19,6 +19,9 @@ Anatoly Yakovenko
    4.3 [Verification](#verification)
    4.4 [Horizontal Scaling](#horizontal-scaling)
    4.5 [Consistency](#consistensy)
+   4.6 [Overhead](#overhead)
+   4.7 [Attacks](#attacks)
+      4.7.1 [Reversal](#reversal)
 
 ## Abstract
 
@@ -210,3 +213,13 @@ Verify(Signature, PublicKey, Event3)
 Lookup(hash30a, PoHSequence)  
 
 ![Input with a back reference](/images/solana-input-back-reference.png)
+
+In Figure 6, the user-supplied input is dependent on hash **0xdeadbeef…** existing in the generated sequence sometime before it's inserted. The blue top left arrow indicates that the client is referencing a previously produced hash. The client's message is only valid in a sequence that contains the hash **0xdeadbeef…**. The red color in the sequence indicates that the sequence has been modified by the clients data.
+
+  ## 4.6 Overhead
+
+4000 hashes per second would generate an additional 160 kilobytes of data and would require access to a GPU with 4000 cores and roughly 0.25-0.75 milliseconds of time to verify.
+
+  ## 4.7 Attacks
+  ## 4.7.1 Reversal
+
