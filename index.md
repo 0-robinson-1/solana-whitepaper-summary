@@ -24,6 +24,9 @@ Anatoly Yakovenko
       4.7.1 [Reversal](#reversal)
       4.7.2 [Speed](#speed)
       4.7.3 [Long Range Attacks](#long-range-attacks)
+5. [Proof of Stake Consensus](#proof-of-stake-consensus)
+   5.1 [Description](#description)
+   5.2 [Terminology](#terminology)
 
 ## Abstract
 
@@ -235,4 +238,11 @@ Having multiple generators may make deployment more resistant to attacks. One ge
 
 Long range attacks involve acquiring old discarded client Private Keys, and generating a falsified ledger. Proof of History provides some protection against long range attacks. A malicious user that gains access to old private keys would have to recreate a historical record that takes as much time as the original one they are trying to forge. This would require access to a faster processor than the network is currently using, otherwise the attacker would never catch up in history length.  
 Additionally, a single source of time allows for construction of a simpler Proof of Replication. Since the network is designed so that all participants in the network will rely on a single historical record of events. **PoRep & PoH together should provide a defense of both space and time against a forged ledger.
+
+  ## 5 Proof of Stake Consensus
+  ## 5.1 Description
+
+This specific instance of Proof of Stake is designed for quick confirmation of the current sequence produced by the PoH generator, for voting and selecting the next PoH generator and for punishing any misbehaving validators. This algorithm depends on messages eventually arriving to all participating nodes within a certain timeout.
+
+  ##5.2 Terminology
 
