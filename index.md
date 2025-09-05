@@ -205,7 +205,8 @@ When the sequence is published, Event3 would be referencing hash30a, and if it's
 | 40    | Event3 = sign(append(event3 data, hash30a),Client Private Key) |   hash40a   |
 
 Verification of this data requires a signature verification, and a lookup of the hash in the sequence of hashes prior to this one. Verify:  
-(Signature, PublicKey, hash30a, event3 data) = Event3
-Verify(Signature, PublicKey, Event3)
-Lookup(hash30a, PoHSequence)
+(Signature, PublicKey, hash30a, event3 data) = Event3  
+Verify(Signature, PublicKey, Event3)  
+Lookup(hash30a, PoHSequence)  
 
+![Input with a back reference](/images/solana-input-back-reference.png)
