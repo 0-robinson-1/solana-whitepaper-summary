@@ -60,7 +60,7 @@ Data can be timestamped into this sequence by appending the data (or a hash of s
 The system is designed to work as follows. With a cryptographic hash function, whose output cannot be predicted without running the function (e.g. sha256, ripemd,...), run the function from some random starting value and take its output and pass it as the input into the same function again. Record the number of times the function has been called and the output at each call. **The starting random value chosen could be any string, like the headline of the New York times for the day**.  
 
 For example:
-PoH Sequence
+#### PoH Sequence
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
@@ -71,11 +71,11 @@ PoH Sequence
 
 For example:
 #### PoH Sequence
-| Index | Operation                           | Output Hash |
-|-------|-------------------------------------|-------------|
-| 1     | sha256("any random starting value") | hash1       |
-| 200   | sha256(hash199)                     | hash200     |
-| 300   | sha256(hash299)                     | hash300     |
+|Index|Operation                           |Output Hash|
+|:-----:|:-----------------------------------:|:-----------:|
+|1|sha256("any random starting value")|hash1|
+|200|sha256(hash199)|hash200|
+|300|sha256(hash299)|hash300|
 
 As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure **that real time has passed between index 0 and index 300**.  
 
