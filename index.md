@@ -244,11 +244,11 @@ Additionally, a single source of time allows for construction of a simpler Proof
 
 This specific instance of Proof of Stake is designed for quick confirmation of the current sequence produced by the PoH generator, for voting and selecting the next PoH generator and for punishing any misbehaving validators. This algorithm depends on messages eventually arriving to all participating nodes within a certain timeout.
 
-  ## 5.2 Terminology
-      - **bonds** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
-      - **slashing** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.
+  ## 5.2 Terminology  
 
-
+- **bonds** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
+- **slashing** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.  
+- **super majority**
 
 
 **WORK IN PROGRESS-STUDYING AS YOU READ :)**
