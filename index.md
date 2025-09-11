@@ -14,19 +14,19 @@ Anatoly Yakovenko
 2. [Outline](#outline)
 3. [Network Design](#network-design)
 4. [Proof of History](#proof-of-history)
-   4.1 [Description](#description)
-   4.2 [Timestamp for Events](#timestamp-for-events)
-   4.3 [Verification](#verification)
-   4.4 [Horizontal Scaling](#horizontal-scaling)
-   4.5 [Consistency](#consistensy)
-   4.6 [Overhead](#overhead)
-   4.7 [Attacks](#attacks)
-   4.7.1 [Reversal](#reversal)
-   4.7.2 [Speed](#speed)
-   4.7.3 [Long Range Attacks](#long-range-attacks)
+4.1 [Description](#description)
+4.2 [Timestamp for Events](#timestamp-for-events)
+4.3 [Verification](#verification)
+4.4 [Horizontal Scaling](#horizontal-scaling)
+4.5 [Consistency](#consistensy)
+4.6 [Overhead](#overhead)
+4.7 [Attacks](#attacks)
+4.7.1 [Reversal](#reversal)
+4.7.2 [Speed](#speed)
+4.7.3 [Long Range Attacks](#long-range-attacks)
 5. [Proof of Stake Consensus](#proof-of-stake-consensus)
-   5.1 [Description](#description)
-   5.2 [Terminology](#terminology)
+5.1 [Description](#description)
+5.2 [Terminology](#terminology)
 
 ## Abstract
 
@@ -55,7 +55,7 @@ In a non-partitioned state, at any given time, there is one Leader in the networ
 **Proof of History is a sequence of computation that can provide a way to cryptographically verify passage of time between two events**. It uses a cryptographically secure function written so that output cannot be predicted from the input, and must be completely executed to generate the output. The function is run in a sequence on a single core,** its previous output as the current input**, periodically recording the current output, and how many times its been called. The output can then be re-computed and verified by external computers in parallel by checking each sequence segment on a separate core.  
 Data can be timestamped into this sequence by appending the data (or a hash of some data) into the state of the function. The recording of the state, index and data as it was appended into the sequences provides a timestamp that can guarantee that the data was created sometime before the next hash was generated in the sequence. This design also supports horizontal scaling as multiple generators can synchronize among each other by mixing their state into each others' sequences.
 
-  ## 4.1 Description
+## 4.1 Description
 
 The system is designed to work as follows. With a cryptographic hash function, whose output cannot be predicted without running the function (e.g. sha256, ripemd,...), run the function from some random starting value and take its output and pass it as the input into the same function again. Record the number of times the function has been called and the output at each call. **The starting random value chosen could be any string, like the headline of the New York times for the day**.  
 
