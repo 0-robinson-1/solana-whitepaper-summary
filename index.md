@@ -61,21 +61,21 @@ The system is designed to work as follows. With a cryptographic hash function, w
 
 For example:
 #### PoH Sequence
-| Index | Operation                              | Output Hash |
-|-------|----------------------------------------|-------------|
-| 1     | sha256("any random starting value")    | hash1       |
-| 2     | sha256(hash1)                          | hash2       |
-| 3     | sha256(hash2)                          | hash3       |
+| Index | Operation                           | Output Hash |
+|-------|-------------------------------------|-------------|
+| 1     | sha256("any random starting value") | hash1       |
+| 2     | sha256(hash1)                       | hash2       |
+| 3     | sha256(hash2)                       | hash3       |
 
 (Where hashN represents the actual hash output. It is only necessary to publish a subset of the hashes and indices **at an interval**.)
 
 For example:
 #### PoH Sequence
-| Index | Operation                              | Output Hash |
-|-------|----------------------------------------|-------------|
-| 1     | sha256("any random starting value")    | hash1       |
-| 200   | sha256(hash199)                        | hash200     |
-| 300   | sha256(hash299)                        | hash300     |
+| Index | Operation                           | Output Hash |
+|-------|-------------------------------------|-------------|
+| 1     | sha256("any random starting value") | hash1       |
+| 200   | sha256(hash199)                     | hash200     |
+| 300   | sha256(hash299)                     | hash300     |
 
 As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure **that real time has passed between index 0 and index 300**.  
 
