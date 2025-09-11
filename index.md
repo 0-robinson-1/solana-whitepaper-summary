@@ -21,9 +21,9 @@ Anatoly Yakovenko
    4.5 [Consistency](#consistensy)
    4.6 [Overhead](#overhead)
    4.7 [Attacks](#attacks)
-      4.7.1 [Reversal](#reversal)
-      4.7.2 [Speed](#speed)
-      4.7.3 [Long Range Attacks](#long-range-attacks)
+   4.7.1 [Reversal](#reversal)
+   4.7.2 [Speed](#speed)
+   4.7.3 [Long Range Attacks](#long-range-attacks)
 5. [Proof of Stake Consensus](#proof-of-stake-consensus)
    5.1 [Description](#description)
    5.2 [Terminology](#terminology)
@@ -246,9 +246,9 @@ This specific instance of Proof of Stake is designed for quick confirmation of t
 
   ## 5.2 Terminology  
 
-- **bonds** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
-- **slashing** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.  
-- **super majority**
+**bonds** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
+**slashing** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.  
+**super majority**
 
 
 **WORK IN PROGRESS-STUDYING AS YOU READ :)**
