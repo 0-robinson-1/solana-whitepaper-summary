@@ -63,7 +63,6 @@ For example:
 #### PoH Sequence
 | Index | Operation | Output Hash |
 |---|---|---|
-
 | 1 | sha256("any random starting value") | hash1 |
 | 2 | sha256(hash1) | hash2 |
 | 3 | sha256(hash2) | hash3 |
