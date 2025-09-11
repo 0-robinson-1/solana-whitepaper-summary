@@ -60,12 +60,13 @@ Data can be timestamped into this sequence by appending the data (or a hash of s
 The system is designed to work as follows. With a cryptographic hash function, whose output cannot be predicted without running the function (e.g. sha256, ripemd,...), run the function from some random starting value and take its output and pass it as the input into the same function again. Record the number of times the function has been called and the output at each call. **The starting random value chosen could be any string, like the headline of the New York times for the day**.  
 
 For example:
-#### PoH Sequence
+PoH Sequence
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
 |2|sha256(hash1)|hash2|
 |3|sha256(hash2)|hash3|
+
 (Where hashN represents the actual hash output. It is only necessary to publish a subset of the hashes and indices **at an interval**.)
 
 For example:
