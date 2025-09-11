@@ -71,8 +71,8 @@ For example:
 
 For example:
 #### PoH Sequence
-|Index|Operation                           |Output Hash|
-|:-----:|:-----------------------------------:|:-----------:|
+|Index|Operation|Output Hash|
+|:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
 |200|sha256(hash199)|hash200|
 |300|sha256(hash299)|hash300|
@@ -92,26 +92,26 @@ The combine function can be a simple append of data, or any operation that is co
 Some external event occurs, like a photograph was taken, or any arbitrary digital data was created:
 
 #### PoH Sequence With Data
-| Index | Operation                                  | Output Hash |
-|-------|--------------------------------------------|-------------|
-| 1     | sha256("any random starting value")        | hash1       |
-| 200   | sha256(hash199)                            | hash200     |
-| 300   | sha256(hash299)                            | hash300     |
-| 336   | sha256(append(hash335, photograph_sha256)) | hash336     |
+|Index|Operation|Output Hash|
+|:---:|:---:|:---:|
+|1|sha256("any random starting value")|hash1|
+|200|sha256(hash199)|hash200|
+|300|sha256(hash299)|hash300|
+|336|sha256(append(hash335, photograph_sha256))|hash336|
 
 Hash336 is computed from the appended binary data of hash335 and the sha256 of the photograph. The index and the sha256 of the photograph are recorded as part of the sequence output. So anyone verifying this sequence can then recreate this change to the sequence.
 
 #### PoH Sequence With 2 Events
-| Index | Operation                                   | Output Hash |
-|-------|---------------------------------------------|-------------|
-| 1     | sha256("any random starting value")         | hash1       |
-| 200   | sha256(hash199)                             | hash200     |
-| 300   | sha256(hash299)                             | hash300     |
-| 336   | sha256(append(hash335, photograph1_sha256)) | hash336     |
-| 400   | sha256(hash399)                             | hash400     |
-| 500   | sha256(hash499)                             | hash500     |
-| 600   | sha256(append(hash599, photograph2_sha256)) | hash600     |
-| 700   | sha256(hash699)                             | hash700     |
+|Index|Operation|Output Hash|
+|:---:|:---:|:---:|
+|1|sha256("any random starting value")|hash1|
+|200|sha256(hash199)|hash200|
+|300|sha256(hash299)|hash300|
+|336|sha256(append(hash335, photograph1_sha256))|hash336|
+|400|sha256(hash399)|hash400|
+|500|sha256(hash499)|hash500|
+|600|sha256(append(hash599, photograph2_sha256))|hash600|
+|700|sha256(hash699)|hash700|
 
 Because the initial process is still sequential, we can then tell that things entered into the sequence must have occurred sometime before the future hashed value was computed. Photograph2 was created before hash600 and photograph1 was created before hash336. Inserting the data into the sequence of hashes results in a change to all subsequent values in the sequence. As long as the hash function used is collision resistant, and the data was appended, it should be computationally impossible to pre-compute any future sequences based on prior knowledge of what data will be integrated into the sequence.  
 The data that is mixed into the sequence can be the raw data itself, or just a hash of the data with accompanying metadata. 
@@ -126,15 +126,15 @@ The sequence can be verified correct by a multicore computer in significantly le
 
 For example:
 #### Core 1
-| Index | Data                                   | Output Hash |
-|-------|----------------------------------------|-------------|
-| 200   | sha256(hash199)                        | hash200     |
-| 300   | sha256(hash299)                        | hash300     |
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|200|sha256(hash199)|hash200|
+|300|sha256(hash299)|hash300|
 #### Core 2
-| Index | Data                                   | Output Hash |
-|-------|----------------------------------------|-------------|
-| 300   | sha256(hash299)                        | hash300     |
-| 400   | sha256(hash399)                        | hash400     |
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|300|sha256(hash299)|hash300|
+|400|sha256(hash399)|hash400|
 
 ![Verification using Multiple Cores](/images/solana-verification-using-multiple-cores.png)
 
@@ -149,20 +149,20 @@ In the example in Figure 4, each core is able to verify each slice of the sequen
 It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
 
 #### PoH Generator A
-| Index | Hash   | Data   |
-|-------|--------|--------|
-| 1     | hash1a |        |
-| 2     | hash2a | hash1b |
-| 3     | hash3a |        |
-| 4     | hash4a |        |
+|Index|Hash|Data|
+|:---:|:---:|:---:|
+|1|hash1a||
+|2|hash2a|hash1b|
+|3|hash3a||
+|4|hash4a||
 
 #### PoH Generator B
-| Index | Hash   | Data   |
-|-------|--------|--------|
-| 1     | hash1b |        |
-| 2     | hash2b | hash1a |
-| 3     | hash3b |        |
-| 4     | hash4b |        |
+|Index|Hash|Data|
+|:---:|:---:|:---:|
+|1|hash1b||
+|2|hash2b|hash1a|
+|3|hash3b||
+|4|hash4b||
 
 Given generators A and B, A receives a data packet from B (hash1b), which contains the last state from Generator B, and the last state generator B observed from Generator A. The next state hash in Generator A then depends on the state from Generator B, so we can derive that hash1b happened sometime before hash3a. This property can be transitive, so if three generators are synchronized through a single common generator A <-> B <-> C, we can trace the dependency between A and C even though they were not synchronized directly.  
 By periodically synchronizing the generators, each generator can then handle a portion of external traffic, thus the overall system can handle a larger amount of events to track at **the cost of true time accuracy** due to network latencies between the generators. A global order can still be achieved by picking some deterministic function to order any events that are within the synchronization window, such as by the value of the hash itself.  
@@ -184,33 +184,33 @@ Users are expected to be able to enforce consistency of the generated sequence a
 | 40    | Event3 |   hash40a   |
 
 #### PoH Hidden Sequence B
-| Index | Data   | Output Hash |
-|-------|--------|-------------|
-| 10    |        |   hash10b   |
-| 20    | Event3 |   hash20b   |
-| 30    | Event2 |   hash30b   |
-| 40    | Event1 |   hash40b   |
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|10||hash10b|
+|20|Event3|hash20b|
+|30|Event2|hash30b|
+|40|Event1|hash40b|
 
 A malicious PoH generator could produce a second hidden sequence with the events in reverse order, if it has access to all the events at once, or is able to generate a faster hidden sequence.  
 To prevent this attack, each client-generated Event should contain within iself **the latest hash that the client observed from what it considers to be a valid sequence**. So when a client creates the "Event1" data, they should append the last hash they have observed.
 
 #### PoH Sequence A
-| Index |                 Data                  | Output Hash |
-|-------|---------------------------------------|-------------|
-| 10    |                                       |   hash10a   |
-| 20    | Event1 = append(event1 data, hash10a) |   hash20a   |
-| 30    | Event2 = append(event2 data, hash20a) |   hash30a   |
-| 40    | Event3 = append(event3 data, hash30a) |   hash40a   |
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|10||hash10a|
+|20|Event1 = append(event1 data, hash10a)|hash20a|
+|30|Event2 = append(event2 data, hash20a)|hash30a|
+|40|Event3 = append(event3 data, hash30a)|hash40a|
 
 When the sequence is published, Event3 would be referencing hash30a, and if it's not in the sequence prior to this Event, the consumers of the sequence know that it's an invalid sequence (Partial Reordering Attack). To prevent a malicious PoH generator from rewriting the client Event hashes, the client can submit a signature of the event data and the last observed hash instead of just the data...
 
 #### PoH Sequence A
-| Index |                             Data                               | Output Hash |
-|-------|----------------------------------------------------------------|-------------|
-| 10    |                                                                |   hash10a   |
-| 20    | Event1 = sign(append(event1 data, hash10a),Client Private Key) |   hash20a   |
-| 30    | Event2 = sign(append(event2 data, hash20a),Client Private Key) |   hash30a   |
-| 40    | Event3 = sign(append(event3 data, hash30a),Client Private Key) |   hash40a   |
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|10||hash10a|
+|20|Event1 = sign(append(event1 data, hash10a),Client Private Key)|hash20a|
+|30|Event2 = sign(append(event2 data, hash20a),Client Private Key)|hash30a|
+|40|Event3 = sign(append(event3 data, hash30a),Client Private Key)|hash40a|
 
 Verification of this data requires a signature verification, and a lookup of the hash in the sequence of hashes prior to this one. Verify:  
 (Signature, PublicKey, hash30a, event3 data) = Event3  
