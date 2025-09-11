@@ -61,12 +61,11 @@ The system is designed to work as follows. With a cryptographic hash function, w
 
 For example:
 #### PoH Sequence
-| Index | Operation | Output Hash |
+|Index|Operation|Output Hash|
 |:---:|:---:|:---:|
-| 1 | sha256("any random starting value") | hash1 |
-| 2 | sha256(hash1) | hash2 |
-| 3 | sha256(hash2) | hash3 |
-
+|1|sha256("any random starting value")|hash1|
+|2|sha256(hash1)|hash2|
+|3|sha256(hash2)|hash3|
 (Where hashN represents the actual hash output. It is only necessary to publish a subset of the hashes and indices **at an interval**.)
 
 For example:
