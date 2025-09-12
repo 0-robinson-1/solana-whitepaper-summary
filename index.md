@@ -30,6 +30,7 @@ Anatoly Yakovenko
   - [5.3 Bonding](#53-bonding)
   - [5.4 Voting](#54-voting)
   - [5.5 Unbonding](#55-unbonding)
+  - [5.6 Elections](#56-elections)
 
 ## Abstract
 
@@ -266,6 +267,16 @@ It is anticipated that the PoH generator will be able to publish a signature of 
 ## 5.5 Unbonding
 
 Missing N number of votes marks the coins as stale and no longer eligible for voting. The user can issue an unbonding transaction to remove them. N is a dynamic value based on the ratio of stale to active votes. N increases as the number of stale votes increases. In an event of a large network partition, this allows the larger branch to recover faster than the smaller branch.
+
+## 5.6 Elections
+
+Election for a new PoH generator occurs when the PoH generator failure is detected. The validator with the largest voting power, or highest public key address if there is a tie is picked as the new PoH generator.  
+A super majority  of confirmations are required on the new sequence. If the new leader fails before a super majority confirmations are available, the next highest validator is selected, and a new set of confirmations is required.  
+To switch votes, a validator needs to vote at a higher PoH sequence counter, and the new vote needs to contain the votes it wants to switch. Otherwise the second vote will be slashable. Vote switching is expected to be designed so that it can only occur at a height that does not have a super majority.  
+Once a PoH generator is established, a Secondary can be elected to take over the transactional processing duties. If a Secondary exists, it will be considered as the next leader during a Primary failure.  
+The platform is designed so that the Secondary becomes Primary and lower rank generators are promoted if an exception is detected or on a predefined schedule.
+
+
 
 
 
