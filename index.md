@@ -246,9 +246,13 @@ This specific instance of Proof of Stake is designed for quick confirmation of t
 
   ## 5.2 Terminology  
 
-**bonds** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
-**slashing** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.  
-**super majority**
+**bonds:** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
+
+**slashing:** The proposed solution to the nothing at stake problem in PoS systems. When a proof of voting for a different branch is published, that branch can destroy the validator's bond. This is an economic incentive designed to discourage validators from confirming multiple branches.  
+
+**super majority:** A super majority is 2/3rds of the validators weighted by their bonds. A super majority vote indicates that the network has reached consensus, and at least 1/3rd of the network would have had to vote maliciously for this branch to be invalid. This would put the economic cost of an attack at 1/3rd of the market cap of the coin.  
+
+
 
 
 **WORK IN PROGRESS-STUDYING AS YOU READ :)**
