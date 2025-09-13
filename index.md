@@ -33,6 +33,7 @@ Anatoly Yakovenko
   - [5.6 Elections](#56-elections)
   - [5.7 Election Triggers](#57-election-triggers)
   - [5.7.1 Forked Proof of History generator](#571-forked-proof-of-history-generator)
+  - [5.7.2 Runtime Exceptions](#572-runtime-exceptions)
 
 ## Abstract
 
@@ -280,6 +281,20 @@ The platform is designed so that the Secondary becomes Primary and lower rank ge
 
 ## 5.7 Election Triggers
 ## 5.7.1 Forked Proof of History generator
+
+PoH generators are designed with an identity that signs the generated sequence. A fork can only occur in case the PoH generator's identity has been compromised. A fork is detected because two different historical records have been published on the same PoH identity.
+
+## 5.7.2 Runtime Exceptions
+
+A hardware failure or a bug, or a intentional error in the PoH generator could cause it to generate an invalid state and publish a signature of the state that does not match the local validator's result. Validators will publish the correct signature **via gossip** and this event would trigger a new round of elections. **Any validators who accept an invalid state will have their bonds slashed.**
+
+## 5.7.3 Network Timeouts
+
+**A network timeout would trigger an election.**
+
+
+
+
 
 
 
