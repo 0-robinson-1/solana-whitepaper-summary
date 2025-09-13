@@ -31,6 +31,8 @@ Anatoly Yakovenko
   - [5.4 Voting](#54-voting)
   - [5.5 Unbonding](#55-unbonding)
   - [5.6 Elections](#56-elections)
+  - [5.7 Election Triggers](#57-election-triggers)
+  - [5.7.1 Forked Proof of History generator](#571-forked-proof-of-history-generator)
 
 ## Abstract
 
@@ -276,7 +278,8 @@ To switch votes, a validator needs to vote at a higher PoH sequence counter, and
 Once a PoH generator is established, a Secondary can be elected to take over the transactional processing duties. If a Secondary exists, it will be considered as the next leader during a Primary failure.  
 The platform is designed so that the Secondary becomes Primary and lower rank generators are promoted if an exception is detected or on a predefined schedule.
 
-
+## 5.7 Election Triggers
+## 5.7.1 Forked Proof of History generator
 
 
 
