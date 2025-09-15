@@ -38,6 +38,8 @@ Anatoly Yakovenko
   - [5.8 Slashing](#58-slashing)
   - [5.9 Secondary Elections](#59-secondary-elections)
   - [5.10 Availability](#510-availability)
+  - [5.11 Recovery](#511-recovery)
+  - [5.12 Finality](#512-finality)
 
 ## Abstract
 
@@ -312,6 +314,14 @@ If a Secondary is elected and the primary fails, the Secondary will be considere
 CAP systems (Consistency Availability Partitions) that deal with partitions have to pick Consistency or Availability. Solana's approach eventually picks Availability, but because they have an objective measure of time, Consistency is picked with reasonable human timeouts. [a CAP system is a distributed system, such as a database or network of computers, that is subject to the CAP theorem. This states that in the presence of network partitions, situations where parts of the system become isolated due to failures, a distributed system cannot simultaneously gaurantee both strong consistency (where every read sees the most recent write) and high availability (where every request gets a non-error response). Instead, it must prioritize either consistency or availability while tolerating partitions].  
 PoS verifiers lock up some amount of coin in a "stake", which allows them to vote for a particular set of transactions. Locking up coin is a transaction that is entered into a PoH stream, just like any other transaction. To vote, a PoS verifier has to sign the hash of the state, as it was computed after processing all the transactions to a specific position in the PoH stream. Looking at the PoH ledger, we can then infer how much time passed between each vote, and if partition occurs, for how long each verifier has been unavailable.  
 To deal with partitions with reasonable human timeframes, the autor proposes a dynamic approach to "unstake" unavailable verifiers. When the number of verifiers is high and above 2/3, the "unstaking" process can be fast. The number of hashes that must be generated into the ledger is low before unavailable verifiers stake is fully unstaked and they are no longer counted for consensus. When the number of verifiers is below 2/3rds but above 1/2, the unstaking timer is slower, requiring a larger number of hashes to be generated before the missing verifiers are unstaked. In a large partition, like a partition that is missing 1/2 or more of the verifiers, the unstaking process is very very slow. Transactions can still be entered into the stream and verifiers can still vote, but full 2/3rds consensus will not be achieved until a very large amount of hashes have been generated and the unavailable verifiers have been unstaked. The difference in time for a network to regain liveness allows us as customers of the network human timeframes to pick a partition that we want to continue using.
+
+##5.11 Recovery
+
+In the proposed system , the ledger can be fully recovered from any failure. That means, anyone in the world can pick any random spot in the ledger and create a valid fork by appending newly generated hashes and transactions. If all the verifiers are missing from this fork, it would take a very very long time for any additional bonds to become valid and for this branch to achieve 2/3rds super majority consensus. So full recovery with zero available validators would require a very large amount of hashes to be appended to the ledger, and only after all the unavailable validators have been unstaked will any new bonds be able to validate the ledger.
+
+##5.12 Finality
+
+PoH allows verifiers of the network to observe what happened in the past with some degree of certainty of the time of those events. **As the PoH generator is producing a stream of messages, all the verifiers are required to submit their signatures of the state within 500ms.** This number can be reduced further depending on network conditions. Since each verification is entered into the stream, everyone in the network can validate that every verifier submitted their votes within the required timeout without actually observing the voting directly.
 
 
 
