@@ -40,6 +40,8 @@ Anatoly Yakovenko
   - [5.10 Availability](#510-availability)
   - [5.11 Recovery](#511-recovery)
   - [5.12 Finality](#512-finality)
+  - [5.13 Attacks](#513-attacks)
+      -[5.13.1 Tragedy of Commons](#5131-tragedy-of-commons)
 
 ## Abstract
 
@@ -322,6 +324,9 @@ In the proposed system , the ledger can be fully recovered from any failure. Tha
 ##5.12 Finality
 
 PoH allows verifiers of the network to observe what happened in the past with some degree of certainty of the time of those events. **As the PoH generator is producing a stream of messages, all the verifiers are required to submit their signatures of the state within 500ms.** This number can be reduced further depending on network conditions. Since each verification is entered into the stream, everyone in the network can validate that every verifier submitted their votes within the required timeout without actually observing the voting directly.
+
+##5.13 Attacks
+##5.13.1 Tragedy of Commons
 
 
 
