@@ -41,7 +41,7 @@ Anatoly Yakovenko
   - [5.11 Recovery](#511-recovery)
   - [5.12 Finality](#512-finality)
   - [5.13 Attacks](#513-attacks)
-      -[5.13.1 Tragedy of Commons](#5131-tragedy-of-commons)
+      - [5.13.1 Tragedy of Commons](#5131-tragedy-of-commons)
 
 ## Abstract
 
