@@ -44,6 +44,8 @@ Anatoly Yakovenko
       - [5.13.1 Tragedy of Commons](#5131-tragedy-of-commons)
       - [5.13.2 Collision with the PoH generator](#collision-with-the-poh-generator)
       - [5.13.3 Censorship](#censorship)
+      - [5.13.4 Longe Range Attacks](#long-range-attacks)
+      - [5.13.5 ASIC Attacks](#asic-attacks)
 
 ## Abstract
 
@@ -341,6 +343,15 @@ A verifier that is colluding with the PoH generator would know in advance when t
 
 **Censorship or denial of service could occur when a 1/3rd of the bond holders refuse to validate any sequence with new bonds.** The protocal can defend against this form of attack by dynamically adjusting how fast bonds become stale. In the event of a denial of service, the larger partition will be designed to fork and censor the Byzantine bond holders. The larger network will recover as the Byzantine bonds become stale with time. The smaller Byzantine partition would not be able to move forward for a longer period of time.  
 The algorithm would work as follows. A majority of the network would elect a new Leader. The Leader would then censor the Byzantine bond holders from participating. Proof of History generator would have to continue generating a sequence, to prove the passage of time, until enough Byzantine bonds have become stale so the bigger network has a super majority. The rate at which bonds become stale would be dynamically based on what percentage  of bonds are active. So the Byzantine minority fork of the network would have to wait much longer than the majority fork to recover a super majority. Once a super majority has been established, slashing could be used to permanently punish the Byzantine bond holders.
+
+##5.13.4 Longe Range Attacks
+
+PoH provides a natural defence against longe range attacks. Recovering the ledger from any point in the past would require the attacker to overtake the valid ledger in time by outpacing the speed of the PoH generator.  
+The consensus protocol provides a second layer of defence, as any attack would have to take longer than the time it takes to unstake all the valid validators. It also creates an availability "gap" in the history of the ledger. When comparing two ledgers of the same height, **the one with the smallest maximum partition can be objectively considered as valid.**
+
+##5.13.5 ASIC Attacks
+
+Two opportunities for ASIC attacks exist in this protocol - **during partition and cheating timeouts in Finality.** For ASIC attacks during Partitions, the Rate at which bonds are unstaked is non-linear and for networks with large partitions the rate is orders of magnitude slower than expected gains from an ASIC attack. For ASIC attacks during Finality, the vulnerability allows for byzantine validators who have a bonded stake to wait for confirmations from other nodes and inject their votes with a collaborating PoH generator. The PoH generator can then use its faster ASIC to generate 500ms worth of hashes in less time and allow for network communication between PoH generator and the collaborating nodes. But, if the PoH generator is also byzantine, there is no reason why the byzantine generator wouldn’t have communicated the exact counter when they expect to insert the failure. This scenario is no different than a PoH generator and all the collaborators sharing the same identity vs. having a single combined stake and only using 1 set of hardware.
 
 
 
