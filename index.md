@@ -47,7 +47,8 @@ Anatoly Yakovenko
       - [5.13.4 Longe Range Attacks](#5134-long-range-attacks)
       - [5.13.5 ASIC Attacks](#5135-asic-attacks)
 - [6 Streaming Proof of Replication](#6-streaming-proof-of-replication)
-  - [6.1 Description](#61-description) 
+  - [6.1 Description](#61-description)
+  - [6.2 Algorithm](#62-algorithm)
 
 ## Abstract
 
@@ -358,6 +359,10 @@ Two opportunities for ASIC attacks exist in this protocol - **during partition a
 
 ##6 Streaming Proof of Replication
 ##6.1 Description
+
+Filecoin proposed a version of Proof of Replication. The goal of this version is to have fast and streaming verifications of Proof of Replication, which are enabled by keeping track of time in a Proof of History generated sequence. Replication is not used as a consesus algorithm, but is a useful tool to account for the cost of storing the blockchain history or state at a high availability.
+
+##6.2 Algorithm
 
 
 
