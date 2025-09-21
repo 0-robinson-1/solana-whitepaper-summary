@@ -42,10 +42,12 @@ Anatoly Yakovenko
   - [5.12 Finality](#512-finality)
   - [5.13 Attacks](#513-attacks)
       - [5.13.1 Tragedy of Commons](#5131-tragedy-of-commons)
-      - [5.13.2 Collision with the PoH generator](#collision-with-the-poh-generator)
-      - [5.13.3 Censorship](#censorship)
-      - [5.13.4 Longe Range Attacks](#long-range-attacks)
-      - [5.13.5 ASIC Attacks](#asic-attacks)
+      - [5.13.2 Collision with the PoH generator](#5132-collision-with-the-poh-generator)
+      - [5.13.3 Censorship](#5133-censorship)
+      - [5.13.4 Longe Range Attacks](#5134-long-range-attacks)
+      - [5.13.5 ASIC Attacks](#5135-asic-attacks)
+- [6 Streaming Proof of Replication](#6-streaming-proof-of-replication)
+  - [6.1 Description](#61-description) 
 
 ## Abstract
 
@@ -352,6 +354,10 @@ The consensus protocol provides a second layer of defence, as any attack would h
 ##5.13.5 ASIC Attacks
 
 Two opportunities for ASIC attacks exist in this protocol - **during partition and cheating timeouts in Finality.** For ASIC attacks during Partitions, the Rate at which bonds are unstaked is non-linear and for networks with large partitions the rate is orders of magnitude slower than expected gains from an ASIC attack. For ASIC attacks during Finality, the vulnerability allows for byzantine validators who have a bonded stake to wait for confirmations from other nodes and inject their votes with a collaborating PoH generator. The PoH generator can then use its faster ASIC to generate 500ms worth of hashes in less time and allow for network communication between PoH generator and the collaborating nodes. But, if the PoH generator is also byzantine, there is no reason why the byzantine generator wouldn’t have communicated the exact counter when they expect to insert the failure. This scenario is no different than a PoH generator and all the collaborators sharing the same identity vs. having a single combined stake and only using 1 set of hardware.
+
+
+##6 Streaming Proof of Replication
+##6.1 Description
 
 
 
