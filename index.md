@@ -367,7 +367,7 @@ Filecoin proposed a version of Proof of Replication. The goal of this version is
 
 
 
-
+![Sequential CBC encryption](/images/solana-sequential-cbc-encryption.png)
 
 
 
