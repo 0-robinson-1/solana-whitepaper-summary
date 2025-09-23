@@ -378,7 +378,7 @@ After a period of N proofs, the data is re-encrypted with a new CBC key.
 
 
 
-
+![Fast Proof of Replication](/images/solana-fast-proof-of-replication.png)
 
 **WORK IN PROGRESS-STUDYING AS YOU READ :)**
 
