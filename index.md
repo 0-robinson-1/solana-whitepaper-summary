@@ -106,7 +106,7 @@ For example:
 
 As long as the hash function chosen is collision resistant, this set of hashes can only be computed in sequence by a single computer thread. This follows from the fact that there is no way to predict what the hash value at index 300 is going to be without actually running the algorith from the starting value 300 times. It can be inferred from the data structure **that real time has passed between index 0 and index 300**.  
 
-  ## 4.2 Timestamp for Events  
+## 4.2 Timestamp for Events  
 
 In the example in Figure 2, hash 62f51643c1 was produced on count 510144806912 and hash c43d862d88 was produced on count 510146904064. This proves that we can
 trust that real time passed between count **510144806912** and count **510146904064**.  
@@ -149,7 +149,7 @@ The data that is mixed into the sequence can be the raw data itself, or just a h
 
 In the example in Figure 3, input cfd40df8… was inserted into the Proof of History sequence. The count at which it was inserted is 510145855488 and the state at which it was inserted is 3d039eef3. All the future generated hashes are modified by this change to the sequence, this change is indicated by the color change in the figure. **Every node observing this sequence can determine the order at which all events have been inserted and estimate the real time between the insertions**.
 
-  ## 4.3 Verification
+## 4.3 Verification
 
 The sequence can be verified correct by a multicore computer in significantly less time than it took to generate it.
 
@@ -176,7 +176,7 @@ $$\frac{\text{Total number of hashes}}{\text{Hashes per second per core} \times 
 
 In the example in Figure 4, each core is able to verify each slice of the sequence in parallel. Since all input strings are recorded into the output, with the counter and state that they are appended to, the verifiers can replicate each slice in parallel. The red colored hashes indicate that the sequence was modified by a data insertion.
 
-  ## 4.4 Horizontal Scaling
+## 4.4 Horizontal Scaling
 
 It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
 
@@ -203,7 +203,7 @@ By periodically synchronizing the generators, each generator can then handle a p
 In Figure 5, the two generators **insert each other’s output state and record the operation**. The color change indicates that data from the peer had modified the sequence. The generated hashes that are mixed into each stream are highlighted in bold. The synchronization is transitive. A <-> B <-> C There is a provable order of events between A and C through B. Scaling in this way comes at the cost of availability. 10 × 1 gbps connections with availability of 0.999 would have 0.99910 = 0.99 availability. (Availability is the probability that a system is operational and accessible. Here, each connection has an availability of 0.999 (99.9% uptime, meaning it’s down only 0.1% of the time)).  
 --> When you add more connections, the system’s overall availability is the product of the individual availabilities. For 10 connections, each with 0.999 availability, the combined availability is calculated as 0.999^10 ≈ 0.99 (or 99%). This means the system as a whole is slightly less reliable because the more components you add, the higher the chance that at least one fails... Scaling by adding more connections boosts throughput (more data can be processed), but it reduces overall system availability because the failure of any single connection can impact the system. The trade-off is between handling more traffic and maintaining high reliability, while adding more connections increases capacity, it slightly lowers the system’s overall reliability due to the multiplied probabilities of individual connection failures.
 
-  ## 4.5 Consistency
+## 4.5 Consistency
 
 Users are expected to be able to enforce consistency of the generated sequence and make it resistant to attacks by inserting the last observed output of the sequence they consider valid into their input.
 
@@ -256,30 +256,30 @@ Lookup(hash30a, PoHSequence)
 
 In Figure 6, the user-supplied input is dependent on hash **0xdeadbeef…** existing in the generated sequence sometime before it's inserted. The blue top left arrow indicates that the client is referencing a previously produced hash. The client's message is only valid in a sequence that contains the hash **0xdeadbeef…**. The red color in the sequence indicates that the sequence has been modified by the clients data.
 
-  ## 4.6 Overhead
+## 4.6 Overhead
 
 4000 hashes per second would generate an additional 160 kilobytes of data and would require access to a GPU with 4000 cores and roughly 0.25-0.75 milliseconds of time to verify.
 
-  ## 4.7 Attacks
-  ## 4.7.1 Reversal
+## 4.7 Attacks
+## 4.7.1 Reversal
 
 Generating a reverse order would require an attacker to start the malicious sequence after the second event. This delay should allow any non malicious peer to peer nodes to communicate about the original order.
 
-  ## 4.7.2 Speed
+## 4.7.2 Speed
 
 Having multiple generators may make deployment more resistant to attacks. One generator could be high bandwidth and receive many events to mix into its sequence, another generator could be high speed low bandwidth that periodically mixes with the high bandwidth generator. --> The high speed sequence would create a secondary sequence of data that an attacker would have to reverse.
 
-  ## 4.7.3 Long Range Attacks
+## 4.7.3 Long Range Attacks
 
 Long range attacks involve acquiring old discarded client Private Keys, and generating a falsified ledger. Proof of History provides some protection against long range attacks. A malicious user that gains access to old private keys would have to recreate a historical record that takes as much time as the original one they are trying to forge. This would require access to a faster processor than the network is currently using, otherwise the attacker would never catch up in history length.  
 Additionally, a single source of time allows for construction of a simpler Proof of Replication. Since the network is designed so that all participants in the network will rely on a single historical record of events. **PoRep & PoH together should provide a defense of both space and time against a forged ledger.
 
-  ## 5 Proof of Stake Consensus  
-  ## 5.1 Description
+## 5 Proof of Stake Consensus  
+## 5.1 Description
 
 This specific instance of Proof of Stake is designed for quick confirmation of the current sequence produced by the PoH generator, for voting and selecting the next PoH generator and for punishing any misbehaving validators. This algorithm depends on messages eventually arriving to all participating nodes within a certain timeout.
 
-  ## 5.2 Terminology  
+## 5.2 Terminology  
 
 **bonds:** Bonds are equivalent to a capital expense in Proof of Work. A miner buys hardware and electricity and commits it to a single branch in a PoW blockchain. A bond is coin that the validator commits as collateral while they are validating transactions.  
 
