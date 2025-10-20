@@ -86,6 +86,7 @@ The system is designed to work as follows. With a cryptographic hash function, w
 
 For example:
 #### PoH Sequence
+
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
@@ -96,6 +97,7 @@ For example:
 
 For example:
 #### PoH Sequence
+
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
@@ -117,6 +119,7 @@ The combine function can be a simple append of data, or any operation that is co
 Some external event occurs, like a photograph was taken, or any arbitrary digital data was created:
 
 #### PoH Sequence With Data
+
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
@@ -127,6 +130,7 @@ Some external event occurs, like a photograph was taken, or any arbitrary digita
 Hash336 is computed from the appended binary data of hash335 and the sha256 of the photograph. The index and the sha256 of the photograph are recorded as part of the sequence output. So anyone verifying this sequence can then recreate this change to the sequence.
 
 #### PoH Sequence With 2 Events
+
 |Index|Operation|Output Hash|
 |:---:|:---:|:---:|
 |1|sha256("any random starting value")|hash1|
@@ -151,11 +155,14 @@ The sequence can be verified correct by a multicore computer in significantly le
 
 For example:
 #### Core 1
+
 |Index|Data|Output Hash|
 |:---:|:---:|:---:|
 |200|sha256(hash199)|hash200|
 |300|sha256(hash299)|hash300|
+
 #### Core 2
+
 |Index|Data|Output Hash|
 |:---:|:---:|:---:|
 |300|sha256(hash299)|hash300|
@@ -174,6 +181,7 @@ In the example in Figure 4, each core is able to verify each slice of the sequen
 It's possible to synchronize multiple Proof of History generators by mixing the sequence state from each generator to each other generator, and thus achieve horizontal scaling of the PoH generator. **This scaling is done without sharding.** The output of both generators is necessarry to reconstruct the full order of events in the system.  
 
 #### PoH Generator A
+
 |Index|Hash|Data|
 |:---:|:---:|:---:|
 |1|hash1a||
@@ -182,6 +190,7 @@ It's possible to synchronize multiple Proof of History generators by mixing the 
 |4|hash4a||
 
 #### PoH Generator B
+
 |Index|Hash|Data|
 |:---:|:---:|:---:|
 |1|hash1b||
@@ -201,12 +210,13 @@ Users are expected to be able to enforce consistency of the generated sequence a
 ![Two Generators Synchronizing](/images/solana-two-generators-synchronizing.png) 
 
 #### PoH Sequence A
-| Index | Data   | Output Hash |
-|-------|--------|-------------|
-| 10    |        |   hash10a   |
-| 20    | Event1 |   hash20a   |
-| 30    | Event2 |   hash30a   |
-| 40    | Event3 |   hash40a   |
+
+|Index|Data|Output Hash|
+|:---:|:---:|:---:|
+|10|        |hash10a|
+|20|Event1|hash20a|
+|30|Event2|hash30a|
+|40|Event3|hash40a|
 
 #### PoH Hidden Sequence B
 |Index|Data|Output Hash|
