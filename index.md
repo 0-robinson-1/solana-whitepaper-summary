@@ -375,8 +375,8 @@ After a period of N proofs, the data is re-encrypted with a new CBC key.
 
 ## 6.3 Verification
 
-
-
+With N cores, each core can stream encryption for each identity. Total space required is 2blocks * Ncores, since the previous encrypted block is necessary to generate the next one. Each core can then be used to generate all the proofs that were derived from the current encrypted block.  
+Total time to verify proofs is expected to be equal to the time it takes to encrypt. The proofs themselves consume few random bytes from the block, so the amount of data to hash is significantly lower than the encrypted block size. **The number of replication identities that can be verified at the same time is equal to the number of available cores.** Modern GPUs have 3500+ cores available to them, albeit at 1/2-1/3 the clock speed of a GPU.
 
 ![Fast Proof of Replication](/images/solana-fast-proof-of-replication.png)
 
