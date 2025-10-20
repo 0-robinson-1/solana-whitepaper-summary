@@ -51,6 +51,7 @@ Anatoly Yakovenko
   - [6.2 Algorithm](#62-algorithm)
   - [6.3 Verification](#63-verification)
   - [6.4 Key Rotation](#64-key-rotation)
+  - [6.5 Hash Selection](#65-hash-selection)
 
 ## Abstract
 
@@ -384,6 +385,9 @@ Total time to verify proofs is expected to be equal to the time it takes to encr
 ## 6.4 Key Rotation
 
 Without key rotation the same encrypted replication can generate cheap proofs for multiple POH sequences. Keys are rotated periodically and each replication is re-encrypted with a new key that is tied to a unique POH sequence. Rotation needs to be slow enough that it's practical to verify replication proofs on GPU hardware, which is slower per core than CPUs.
+
+## 6.5 Hash Selection
+
 
 
 
