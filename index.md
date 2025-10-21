@@ -430,10 +430,16 @@ The signed hash is expected  to be used to seed the sample. If a replicator coul
 A replicator identity that is colluding with the PoH generator could inject a specific transaction at the end of the sequence before the predefined hash for random byte selection is generated. With enough cores, an attacker could generate a hash that is preferable to the replicator's identity.  
 This attack could only benefit a single replicator identity. Since all the identities have to use the same exact hash that is cryptographically signed with ECDSA (Elliptic Curve Digital Signature Algorithm) or an equivalent, the resulting signature is unique for each replicator identity, and collision resistant. A single replicator identity would only have marginal gains. 
 
-
-
-
 ## 6.7.4 Denial of Service
+
+The cost of adding an additional replicator identity is expected to be equal to the cost of storage. The cost of adding extra computational capacity to verify all the replicator identities is expected to be equal to the cost of a CPU or GPU core per replication identity.  
+This creates an opportunity for a denial of service attack on the network by creating a large number of valid replicator identities.  
+To limit this attack, the consensus protocol chosen for the network can select a replication target, and award the replication proofs that meet the desired characteristics, like availability on the network, bandwidth, geolocation etc...
+
+
+
+
+
 ## 6.7.5 Tragedy of Commons
 ## 7 System Architecture
 
