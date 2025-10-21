@@ -436,11 +436,14 @@ The cost of adding an additional replicator identity is expected to be equal to 
 This creates an opportunity for a denial of service attack on the network by creating a large number of valid replicator identities.  
 To limit this attack, the consensus protocol chosen for the network can select a replication target, and award the replication proofs that meet the desired characteristics, like availability on the network, bandwidth, geolocation etc...
 
-
-
-
-
 ## 6.7.5 Tragedy of Commons
+
+The PoS verifiers could simply confirm PoRep without doing any work. The economic incentives should be lined up with the PoS verifiers to do work, i.e. splitting the mining payout between the PoS verifiers and the PoRep replication nodes.
+
+![System Architecture](/images/system-architecture.png)
+
+To further avoid this scenario, the PoRep verifiers can submit false proofs a small percentage of the time. They can prove the proof is false by providing the function that generated the false data. Any PoS verifier that confirmed a false proof would be slashed.
+
 ## 7 System Architecture
 
 
