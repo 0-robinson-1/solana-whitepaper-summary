@@ -55,7 +55,7 @@ Anatoly Yakovenko
 
 ## Abstract
 
-This paper proposes a new blockchain architecture based on Proof of History (PoH) - a prroof for verifying order and passage of time between events. PoH is used to encode trustless passage of time into a ledger - an append only data structure (Append only means new data can only be added to the end of the blockchain, existing data can't be modified, deleted or reordered... This ensures immutability as once semething is added, it stays this way permanent). When used alongside a consensus algorithm such as Proof of Work (PoW) or Proof of Stake (PoS), PoH can reduce messaging overhead in a Byzantine Fault Tolerant replicated state machine, resulting in sub-second finality times.  
+This paper proposes a new blockchain architecture based on Proof of History (PoH) - a proof for verifying order and passage of time between events. PoH is used to encode trustless passage of time into a ledger - an append only data structure (Append only means new data can only be added to the end of the blockchain, existing data can't be modified, deleted or reordered... This ensures immutability as once semething is added, it stays this way permanent). When used alongside a consensus algorithm such as Proof of Work (PoW) or Proof of Stake (PoS), PoH can reduce messaging overhead in a Byzantine Fault Tolerant replicated state machine, resulting in sub-second finality times.  
 This paper also proposes two algorithms that leverage the time keeping properties of the PoH ledger - a PoS algorithm that can recover from partitions of any size an efficient streaming Proof of Replication (PoRep). **The combination of PoRep and PoH provides a defense against forgery of the ledger with respect to time (ordering) and storage.** The protocol is analyzed on a 1 gbps network, and this paper shows that throughput up to 710K transactions per second (TPS) is possible with today's hardware.
 
 ## 1. Introduction
@@ -394,11 +394,13 @@ Total time to verify proofs is expected to be equal to the time it takes to encr
 
 ## 6.4 Key Rotation
 
-Without key rotation the same encrypted replication can generate cheap proofs for multiple POH sequences. Keys are rotated periodically and each replication is re-encrypted with a new key that is tied to a unique POH sequence. Rotation needs to be slow enough that it's practical to verify replication proofs on GPU hardware, which is slower per core than CPUs.
+Without key rotation the same encrypted replication can generate cheap proofs for multiple PoH sequences. Keys are rotated periodically and each replication is re-encrypted with a new key that is tied to a unique POH sequence. Rotation needs to be slow enough that it's practical to verify replication proofs on GPU hardware, which is slower per core than CPUs.
 
 ## 6.5 Hash Selection
 
-
+The PoH generator publishes a hash to be used by the entire network for encrypting PoRep, and for using as the pseudorandom number generator for byte selection in fast proofs.  
+The hash is published at a periodic counter that is roughly equal to 1/2 the time it takes to encrypt the data set. Each replication identity must use the same hash, and use the signed result of the hash as the seed for byte selection, or the encryption key. The period that each replicator must provide a proof must be smaller than the encryption time. Otherwise the replicator can stream the encryption and delete it for each proof.  
+A malicious generator could inject data into the sequence prior to this hash to generate a specific hash.
 
 
 
