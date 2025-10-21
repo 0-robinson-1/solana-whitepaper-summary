@@ -55,6 +55,11 @@ Anatoly Yakovenko
   - [6.6 Proof Validation](#66-proof-validation)
   - [6.7 Attacks](#67-attacks)
       - [6.7.1 Spam](#671-spam)
+      - [6.7.2 Partial Erasure](#672-partial-erasure)
+      - [6.7.3 Collusion with PoH generator](#673-collusion-with-poh-generator)
+      - [6.7.4 Denial of Service](#674-denial-of-service)
+      - [6.7.5 Tragedy of Commons](#675-tragedy-of-commons)
+  - [7 System Architecture](#7-system-architecture)
 
 ## Abstract
 
@@ -415,8 +420,22 @@ The PoH node is not expected to validate the submitted PoRep proofs. It is expec
 A malicious user could create many replicator identities and spam the network with bad proofs. To facilitate faster verification, nodes are required to provide the encrypted data and the entire merkle tree to the rest of the network when they request verification.  
 The PoRep that is designed in this paper allows for cheap verification of any additional proofs, as they take no additional space. But each identity would consume 1 core of encryption time. The replication target should be set to a maximum size of readily available cores. Modern GPUs ship with 3500+ cores.
 
+## 6.7.2 Partial Erasure
+
+A replicator node could attempt to partially erase some of the data to avoid storing the entire state. The number of proofs and the randomness of the seed should make this attack difficult.
+
+## 6.7.3 Collusion with PoH generator
+
+The signed hash is expected  to be used to seed the sample. If a replicator could select a specific hash in advance then the replicator could erase all bytes that are not going to be sampled.  
+A replicator identity that is colluding with the PoH generator could inject a specific transaction at the end of the sequence before the predefined hash for random byte selection is generated. With enough cores, an attacker could generate a hash that is preferable to the replicator's identity.  
+This attack could only benefit a single replicator identity. Since all the identities have to use the same exact hash that is cryptographically signed with ECDSA (Elliptic Curve Digital Signature Algorithm) or an equivalent, the resulting signature is unique for each replicator identity, and collision resistant. A single replicator identity would only have marginal gains. 
 
 
+
+
+## 6.7.4 Denial of Service
+## 6.7.5 Tragedy of Commons
+## 7 System Architecture
 
 
 
