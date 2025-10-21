@@ -440,7 +440,7 @@ To limit this attack, the consensus protocol chosen for the network can select a
 
 The PoS verifiers could simply confirm PoRep without doing any work. The economic incentives should be lined up with the PoS verifiers to do work, i.e. splitting the mining payout between the PoS verifiers and the PoRep replication nodes.
 
-![System Architecture](/images/system-architecture.png)
+![System Architecture](/images/solana-system-architecture.png)
 
 To further avoid this scenario, the PoRep verifiers can submit false proofs a small percentage of the time. They can prove the proof is false by providing the function that generated the false data. Any PoS verifier that confirmed a false proof would be slashed.
 
