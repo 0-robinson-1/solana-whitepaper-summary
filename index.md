@@ -470,12 +470,15 @@ The network could be configured with a minimum PoS bond size, and a requirement 
 
 ## 7.1.4 Validators
 
-
-
-
-
+These nodes are consuming bandwidth from Verifiers. They are virtual nodes, and can run on the same machines as the Verifiers or the Leader, or on separate machines that are specific to the consensus algorithm configured for this network.
 
 ## 7.2 Network Limits
+
+
+
+
+
+
 
 
 
