@@ -60,6 +60,12 @@ Anatoly Yakovenko
       - [6.7.4 Denial of Service](#674-denial-of-service)
       - [6.7.5 Tragedy of Commons](#675-tragedy-of-commons)
   - [7 System Architecture](#7-system-architecture)
+      - [7.1 Components](#71-components)
+          - [7.1.1 Leader, Proof of History generator](#711-leader-proof-of-history-generator)
+          - [7.1.2 State](#712-state)
+          - [7.1.3 Verifier, State Replication](#713-verifier-state-replication)
+          - [7.1.4 Validators](#714-validators)
+      - [7.2 Network Limits](#72-network-limits)
 
 ## Abstract
 
@@ -445,6 +451,8 @@ The PoS verifiers could simply confirm PoRep without doing any work. The economi
 To further avoid this scenario, the PoRep verifiers can submit false proofs a small percentage of the time. They can prove the proof is false by providing the function that generated the false data. Any PoS verifier that confirmed a false proof would be slashed.
 
 ## 7 System Architecture
+## 7.1 Components
+## 7.1.1 Leader, Proof of History generator
 
 
 
@@ -452,6 +460,13 @@ To further avoid this scenario, the PoRep verifiers can submit false proofs a sm
 
 
 
+
+
+
+## 7.1.2 State
+## 7.1.3 Verifier, State Replication
+## 7.1.4 Validators
+## 7.2 Network Limits
 
 
 
