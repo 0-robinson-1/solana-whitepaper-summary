@@ -465,15 +465,16 @@ For example, the Transaction table contains:
 
 ## 7.1.3 Verifier, State Replication
 
-
-
-
-
-
-
-
+The Verifier nodes replicate and provide high availability of the blockchain state. The replication target is selected by the consensus algorithm, and the validators in the consensus algorithm select and vote the PoRep nodes they approve of based on off-chain defined criteria.  
+The network could be configured with a minimum PoS bond size, and a requirement for a single replicator identity per bond.
 
 ## 7.1.4 Validators
+
+
+
+
+
+
 ## 7.2 Network Limits
 
 
