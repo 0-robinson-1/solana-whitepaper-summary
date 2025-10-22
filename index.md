@@ -458,15 +458,21 @@ The Leader is an elected Proof of History generator. It consumes arbitrary user 
 
 ## 7.1.2 State
 
+The state is a naive hash table indexed by the user's address. Each cell contains the full user's address and the memory required for this computation.  
+For example, the Transaction table contains:
 
-
-
-
-
-
-
+![Transaction Table](/images/solana-transaction-table.png)
 
 ## 7.1.3 Verifier, State Replication
+
+
+
+
+
+
+
+
+
 ## 7.1.4 Validators
 ## 7.2 Network Limits
 
