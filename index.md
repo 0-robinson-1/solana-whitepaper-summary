@@ -454,16 +454,18 @@ To further avoid this scenario, the PoRep verifiers can submit false proofs a sm
 ## 7.1 Components
 ## 7.1.1 Leader, Proof of History generator
 
-
-
-
-
-
-
-
-
+The Leader is an elected Proof of History generator. It consumes arbitrary user transactions and outputs a Proof of History sequence of all the transactions that guarantee a unique global order in the system. After each batch of transactions the Leader outputs a signature of the state that is the result of running the transactions in that order. This signature is signed with the identity of the Leader.
 
 ## 7.1.2 State
+
+
+
+
+
+
+
+
+
 ## 7.1.3 Verifier, State Replication
 ## 7.1.4 Validators
 ## 7.2 Network Limits
