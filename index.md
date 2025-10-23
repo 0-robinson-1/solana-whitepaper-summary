@@ -513,7 +513,7 @@ Smart contracts are a generalized form of transactions. These are programs that 
 One of its main advantages is a zero cost Foreign Function Interface. Intrinsics (built-in functions or instructions that are hard-coded into the runtime environment), or functions that are implemented on the platform directly, are callable by programs. Calling the intrinsics suspends that program and shedules the intrinsic on a high performance server. Intrinsics are batched together to execute in parallel on the GPU.  
 In the above example, two different user programs call the same intrinsic. Each program is suspended until the batch execution of the intrinsics is complete. An example intrinsic is ECDSA verification. Batching these calls to execute on the GPU can increase throughput by thousands of times.
 
-
+![Executing BPF programs](/images/solana-executing-bpf-programs.png)
 
 This trampoline requires no native operating system thread context switches, since the BPF bytecode has a well defined context for all the memory that it is using.  
 eBPF backend has been included in LLVM (Low-Level Virtual Machine) since 2015, so any LLVM frontend language can be used to write smart contracts. It's been in the Linux kernel since 2015, and the first iterations of the bytecode have been around since 1992. A single pass can check eBPF for correctness, ascertain its runtime and memory requirements and convert it to x86 instructions.
