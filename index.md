@@ -505,11 +505,7 @@ GPU based ECDSA verification servers have had experimental results of 900k opera
 
 ## 7.4 Memory Limits
 
-
-
-
-
-
+A naive implementation of the state as a 50% full hashtable with 32 byte entries for each account, would theoretically fit 10 billion accounts into 640GB. Steady state random access to this table is measured at 1.1 * 10^7 writes or reads per second. Based on 2 reads and 2 writes per transaction, memory throughput can handle 2.75m transactions per second. This was measured on an Amazon Web Services 1TB x1.16xlarge instance.
 
 ## 7.5 High Performance Smart Contracts
 
