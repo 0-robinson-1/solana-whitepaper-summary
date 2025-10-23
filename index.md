@@ -474,7 +474,29 @@ These nodes are consuming bandwidth from Verifiers. They are virtual nodes, and 
 
 ## 7.2 Network Limits
 
-The leader is expected to be able to take incoming user packets, order them in the most efficient way possible, and sequence them into a PoH sequence that is published to downstream Verifiers. Efficiency is based on memory access patterns of the transactions, so the transactions are ordered to minimise faults and to maximize prefetching.
+The leader is expected to be able to take incoming user packets, order them in the most efficient way possible, and sequence them into a PoH sequence that is published to downstream Verifiers.
+
+![Generator network limits](/images/solana-generator-network-limits.png)
+
+Efficiency is based on memory access patterns of the transactions, so the transactions are ordered to minimise faults and to maximize prefetching.
+
+![Incoming packet format](/images/solana-incoming-packet-format.png)
+
+The minimal payload that can be supported would be 1 destination account with a minimum size of 176 bytes.
+
+With payload:
+![Incoming packet format with payload](/images/solana-incoming-packet-format-with-payload.png)
+
+The PoH sequence packet contains the current hash, counter, and the hash of all the new messages added to the PoH sequence and the state signature after processing all the messages. This packet is sent once every N messages are broadcast.
+
+![Proof of History packet](/images/solana-proof-of-history-packet.png)
+
+On a 1gbps network connection the maximum number of transactions possible is  
+1 gigabit per second / 176 bytes = 710k tps max.  
+Some loss (1-4%) is expected due to Ethernet framing. The spare capacity over the target amount for the network can be used to increase availability by coding the output with Reed-Solomon codes, and striping it to the available downstream Verifiers.
+
+
+
 
 
 
