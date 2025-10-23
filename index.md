@@ -474,6 +474,8 @@ These nodes are consuming bandwidth from Verifiers. They are virtual nodes, and 
 
 ## 7.2 Network Limits
 
+The leader is expected to be able to take incoming user packets, order them in the most efficient way possible, and sequence them into a PoH sequence that is published to downstream Verifiers. Efficiency is based on memory access patterns of the transactions, so the transactions are ordered to minimise faults and to maximize prefetching.
+
 
 
 
