@@ -66,6 +66,9 @@ Anatoly Yakovenko
           - [7.1.3 Verifier, State Replication](#713-verifier-state-replication)
           - [7.1.4 Validators](#714-validators)
       - [7.2 Network Limits](#72-network-limits)
+      - [7.3 Computational Limits](#73-computational-limits)
+      - [7.4 Memory Limits](#74-memory-limits)
+      - [7.5 High Performance Smart Contracts](#75-high-performance-smart-contracts)
 
 ## Abstract
 
@@ -495,7 +498,20 @@ On a 1gbps network connection the maximum number of transactions possible is
 1 gigabit per second / 176 bytes = 710k tps max.  
 Some loss (1-4%) is expected due to Ethernet framing. The spare capacity over the target amount for the network can be used to increase availability by coding the output with Reed-Solomon codes, and striping it to the available downstream Verifiers.
 
+## 7.3 Computational Limits
 
+Each transaction requires a digest verification. This operation does not use any memory outside of the transaction message itself and can be parallelized independently. Thus throughput is expected to be limited by the number of cores available on the system.  
+GPU based ECDSA verification servers have had experimental results of 900k operations per second.
+
+## 7.4 Memory Limits
+
+
+
+
+
+
+
+## 7.5 High Performance Smart Contracts
 
 
 
@@ -508,5 +524,3 @@ Some loss (1-4%) is expected due to Ethernet framing. The spare capacity over th
 
 
 **WORK IN PROGRESS-STUDYING AS YOU READ :)**
-
-
